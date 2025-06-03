@@ -1,0 +1,22 @@
+terminal PLUS, MINUS, MULT, DIV, MOD, POW;
+terminal LPAREN, RPAREN;
+terminal Integer NUMBER;
+
+precedence left PLUS, MINUS;
+precedence left MULT, DIV, MOD;
+precedence right POW;
+precedence right UMINUS;
+
+non terminal Integer expr;
+
+start with expr;
+
+expr ::= expr PLUS expr
+       | expr MINUS expr
+       | expr MULT expr
+       | expr DIV expr
+       | expr MOD expr
+       | expr POW expr
+       | MINUS expr %prec UMINUS
+       | LPAREN expr RPAREN
+       | NUMBER;
